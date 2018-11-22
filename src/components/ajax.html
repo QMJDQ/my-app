@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax</title>
+</head>
+<body>
+    <button id="btn">点一下</button>
+</body>
+<script>
+    function ajax(options){
+        var xhr = new XMLHttpRequest();
+        var data = JSON.stringify(options.data);
+        var a;
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                if (typeof (xhr.responseText) == 'string'){
+                    a = JSON.parse(xhr.responseText);
+                    options.success(a);
+                }else {
+                    options.success(xhr.responseText);
+                }
+            }else {
+                console.log('出错了')
+            }
+        }
+        if(options.type == "get"){
+            xhr.open(options.type,options.url + "?"+ options.params,options.async);
+            xhr.send(null)
+        } else if(options.type == "post"){
+            xhr.open(options.type,options.url,options.async);
+            xhr.setRequestHeader("Content-Type","application/json");
+            xhr.send(data);
+        }
+    }
+    //调用
+    // var btn = document.querySelector('#btn')
+    // btn.addEventListener('click', ajax({
+    //     url : "http://192.168.0.34:8077/addAdvert",
+    //     params : "position=0",
+    //     type : "post",
+    //     async : true,
+    //     data : {
+    //         'url': '0.jpg',
+    //         'demandID': '15245',
+    //         'position': '0',
+    //         'createid': 'admin',
+    //         'updateid': 'admin',
+    //         'status': '1'
+    //     },
+    //     success : function(data){
+    //         console.log(data);
+    //     }
+    // })
+    // )
+</script>
+</html>

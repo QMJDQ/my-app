@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>新增广告</title>
+</head>
+<body>
+    <button id="btn">点一下上传</button>
+</body>
+<script>
+    var btn = document.querySelector('#btn');
+    btn.addEventListener('click', function () {
+        var a;
+        var xhr = new XMLHttpRequest();
+        var ecURL = encodeURIComponent('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=436925328,2608128599&fm=200&gp=0.jpg')
+        var data = JSON.stringify({
+            // 'advertId': '123666',
+            'url': ecURL,
+            'demandID': '15245',
+            'position': '0',
+            'createid': 'admin',
+            'updateid': 'admin',
+            'status': '1'
+        })
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4){
+                    if (xhr.status == 200){
+                        if (typeof (xhr.responseText) == 'string'){
+                            a = JSON.parse(xhr.responseText)
+                        }else {
+                            a = xhr.responseText
+                        }
+                        console.log(a);
+                    }
+                }
+            }
+        xhr.open('post','http://192.168.0.34:8077/addAdvert',true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(data);
+    })
+</script>
+</html>

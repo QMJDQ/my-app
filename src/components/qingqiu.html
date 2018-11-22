@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取广告</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        text-decoration: none;
+    }
+
+    body {
+        padding: 20px;
+    }
+
+    #container {
+        position: relative;
+        width: 710px;
+        height: 150px;
+        /*border: 3px solid #333;*/
+        overflow: hidden;
+    }
+
+    #list {
+        position: absolute;
+        z-index: 1;
+        width: 1420px;
+        height: 150px;
+    }
+
+    #list img {
+        float: left;
+        width: 710px;
+        height: 150px;
+    }
+
+    #buttons {
+        position: absolute;
+        left: 250px;
+        bottom: 20px;
+        z-index: 2;
+        height: 10px;
+        width: 100px;
+    }
+
+    #buttons span {
+        float: left;
+        margin-right: 5px;
+        width: 10px;
+        height: 10px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        background: #333;
+        cursor: pointer;
+    }
+
+    #buttons .on {
+        background: orangered;
+    }
+
+    .arrow {
+        position: absolute;
+        margin-top: 80px;
+        z-index: 2;
+        /*display: none;*/
+        width: 40px;
+        height: 40px;
+        font-size: 36px;
+        font-weight: bold;
+        line-height: 39px;
+        text-align: center;
+        color: #fff;
+        background-color: RGBA(0, 0, 0, .3);
+        cursor: pointer;
+    }
+
+    .arrow:hover {
+        background-color: RGBA(0, 0, 0, .7);
+    }
+
+    #container:hover .arrow {
+        display: block;
+    }
+
+    #prev {
+        /*left: 20px;*/
+        /*margin-right: 710px;*/
+    }
+
+    #next {
+        right: 0px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div id="list" style="left: -710px;">
+        <img id="img1" src="" alt="1" />
+        <img id="img2" src="" alt="1" />
+    </div>
+    <!--<div id="buttons">-->
+        <!--<span index="1" class="on"></span>-->
+        <!--<span index="2"></span>-->
+        <!--<span index="3"></span>-->
+        <!--<span index="4"></span>-->
+        <!--<span index="5"></span>-->
+    <!--</div>-->
+    <a href="javascript:;" id="prev" class="arrow">&lt;</a>
+    <a href="javascript:;" id="next" class="arrow">&gt;</a>
+</div>
+</body>
+<script>
+    //ajax
+    var a;
+    var arr;
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4){
+            if (xhr.status == 200){
+                if (typeof (xhr.responseText) == 'string') {
+                    a = JSON.parse(xhr.responseText);
+                    console.log(a);
+                    // console.log(a.data.list[0].url)
+                    arr = new Array(a.data.list[0].url, a.data.list[0].url);
+                    console.log(arr);
+                    document.querySelector('#img1').setAttribute('src', arr[0]);
+                    document.querySelector('#img2').setAttribute('src', arr[1]);
+                }else {
+                    console.log(xhr.responseText)
+                }
+            }
+        }
+    };
+    xhr.open('get','http://192.168.0.34:8077/getAdvertList?position=0',true);
+    xhr.send();
+   // 轮播图
+    window.onload = function() {
+        var list = document.querySelector('#list');
+        var prev = document.querySelector('#prev');
+        var next = document.querySelector('#next');
+        function animate(offset) {
+            var newLeft = parseInt(list.style.left) + offset;
+            list.style.left = newLeft + 'px';
+            if(newLeft<-710){
+                list.style.left = 0 + 'px';
+            }
+            if(newLeft>0){
+                list.style.left = -710 + 'px';
+            }
+        }
+        prev.onclick = function() {
+            animate(710);
+        }
+        next.onclick = function() {
+            animate(-710);
+        }
+        var timer;
+        function play() {
+            timer = setInterval(function () {
+                prev.onclick()
+            }, 1500)
+        }
+        play();
+        var container = document.querySelector('#container');
+
+        function stop() {
+            clearInterval(timer);
+        }
+        container.onmouseover = stop;
+        container.onmouseout = play;
+    }
+</script>
+</html>

@@ -1,0 +1,26 @@
+<template>
+    <div>
+        <div>
+            <img class="touxiang" src="" alt="">
+            <div class="ziliao">
+                <div class="name">{{ name }}</div>
+                <div class="yinxiang">{{ yinxiang }}</div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: 'HelloWorld',
+        props: {
+            name: '王二狗',
+
+        }
+    }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+</style>

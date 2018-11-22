@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+    function reqFetch (data,url,success,error) {
+        var d = Object.keys(data);
+        var str = ''
+        d.map(function(item) {
+            str += item+'='+data[item]+'&';
+        })
+        str = str.slice(0,-1);
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function(){
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200){
+                    if (success) {
+                        var a = JSON.parse(xhr.responseText)
+                        if(a.errorCode === -1006) {
+
+                        }
+                        success(a)
+                    }
+                } else {
+                    console.error(xhr.statusText);
+                }
+            }
+        };
+        xhr.onerror = error;
+        xhr.open('POST',baseurl + url,http://www.example.com', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(str);
+    }
+</script>
+</html>
