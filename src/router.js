@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Supply from './views/supply.vue'
+import Publish from './views/publish.vue'
 const About = () => import( './views/About.vue');
 
 Vue.use(Router)
@@ -17,6 +18,11 @@ export default new Router({
       path: '/s',
       name: 'Supply',
       component: Supply
+      },
+      {
+        path:'/publish',
+        name: 'publish',
+        component: Publish
       },
       {
       path: '/about',
