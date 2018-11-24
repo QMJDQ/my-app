@@ -14,7 +14,7 @@
             <Label v-for="(aa,index) in list" :item = 'aa' :key="index"></Label>
         </div>
         <div v-else>
-            <LabelNeed v-for="(bb,index) in needlist" :item = 'bb' :key="index"></LabelNeed>
+            <Label v-for="(bb,index) in needlist" :item = 'bb' :key="index"></Label>
         </div>
         <div class="kong"></div>
     </div>
@@ -23,7 +23,6 @@
 <script>
     import Label from '@/components/Label.vue'
     import Search from '@/components/Search.vue'
-    import LabelNeed from '@/components/LabelNeed.vue'
     export default {
         name: "supply",
         data () {
@@ -111,8 +110,7 @@
         },
         components: {
             Label,
-            Search,
-            LabelNeed
+            Search
         },
     }
 </script>
