@@ -89,61 +89,9 @@
 </script>
 
 <style scoped>
-    .header{
-        display: flex;
-        justify-content: space-between;
-        padding: 14px 15px;
-        align-items: center;
-        border-bottom: #f6f5f8 1px solid;
-    }
-    .header-left img{
-        width: 16px;
-        height: 16px;
-    }
-    .header-center{
-        font-family: PingFang-SC-Medium;
-        font-size: 16px;
-        font-weight: normal;
-        font-stretch: normal;
-        letter-spacing: 0px;
-        color: #333333;
-    }
-    .header-right{
-        font-family: PingFang-SC-Bold;
-        font-size: 15px;
-        font-weight: normal;
-        font-stretch: normal;
-        letter-spacing: 0px;
-        color: #333333;
-    }
-    .tag{
-        display: flex;
-        justify-content: space-between;
-        padding: 16px 30px;
-        font-family: PingFang-SC-Medium;
-        font-size: 14px;
-        font-weight: normal;
-        font-stretch: normal;
-        letter-spacing: 0px;
-        color: #999999;
-        border-bottom: #f6f5f8 10px solid;
-    }
-    .tag-left{
-        font-family: PingFang-SC-Medium;
-        font-size: 15px;
-        font-weight: normal;
-        font-stretch: normal;
-        letter-spacing: 0px;
-        color: #ff8758;
-    }
-    .tag hr{
-        position: absolute;
-        width: 32px;
-        height: 3px;
-        margin-left: 13px;
-        margin-top: 30px;
-        background: linear-gradient(-90deg, #fe4e55 0%, #ffb127 100%);
-        border: none;
+    *{
+        margin: 0;
+        padding: 0;
     }
     .tab-label-title{
         font-family: PingFang-SC-Medium;

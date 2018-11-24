@@ -77,10 +77,10 @@
                 <img class="qita" src="../assets/huoche.png" alt="">
                 <div>小火车</div>
             </div>
-            <div class="dibuyeqian clearfloat">
+            <router-link to="/publish" class="dibuyeqian clearfloat">
                 <img class="fabu" src="../assets/fabu.png" alt="">
                 <div class="fabudiv">发布</div>
-            </div>
+            </router-link>
             <div class="dibuyeqian clearfloat">
                 <img class="qita" src="../assets/shangmen.png" alt="">
                 <div>上门服务</div>
@@ -241,6 +241,8 @@ export default {
         margin-left: 4%;
         margin-right: 4%;
         text-align: center;
+        text-decoration:none;
+        color: #999999;
     }
     .qita{
         width: 22px;
@@ -256,8 +258,5 @@ export default {
     }
     .fabudiv{
         margin-top: -33px;
-    }
-    .dibuyeqian img, .dibuyeqian div{
-
     }
 </style>
