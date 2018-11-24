@@ -3,14 +3,7 @@
         <div class="tab-category tab-label">
             <div class="tab-style">
                 <div class="tab-label-title">{{ category }}</div>
-                <div class="tab-category-placeholder tab-input">
-                    <select v-model="leibie">
-                        <option disabled value="设备（旧）">请选择</option>
-                        <option>设备（旧）</option>
-                        <option>设备（新）</option>
-                        <option>设备（不新不旧）</option>
-                    </select>
-                </div>
+                <div class="tab-category-placeholder tab-input">{{ leibie }}</div>
             </div>
             <div><img src="../assets/jinrujiantou.png" alt=""></div>
         </div>
